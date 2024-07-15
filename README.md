@@ -1,5 +1,5 @@
 # clarin-cmd-services
 
 Use:
-```flask --app server run```
+```python scripts/server.py```
 to start
