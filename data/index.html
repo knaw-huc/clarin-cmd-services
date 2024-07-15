@@ -1,0 +1,137 @@
+<html xmlns:xi="http://www.w3.org/2001/XInclude">
+	<head>
+		<title>CLARIN VLO: facet maping</title>
+		<link rel="shortcut icon" href="https://www.clarin.eu/sites/all/themes/CLARIN_Horizon/favicon.ico" />
+		<link rel="icon" href="https://www.clarin.eu/sites/all/themes/CLARIN_Horizon/favicon.ico" />
+		<link href="$site$clarin/ws/cmd-core/style/style.css" rel="stylesheet" type="text/css" />
+		<link href="$site$clarin/ws/cmd-core/xmlverbatim/xmlverbatim.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<table class="main">
+			<tr>
+				<td class="left">
+					<a href="http://www.clarin.eu/"><img src="$site$clarin/ws/cmd-core/imgs/Logo-trans-compact-CLARIN.png" width="125px" border="0" /></a>
+					<div class="note" style="text-align:center;font-style:italic;">VLO</div>
+				</td>
+				<td class="right">
+					<div class="title">facet mapping</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+					<ol class="menu">
+						<li>
+							<a href="#intro">introduction</a>
+						</li>
+						<li>
+							<a href="#mapping">mapping</a>
+						</li>
+						<li>
+							<a href="#check">check</a>
+						</li>
+						<li>
+							<a href="#faq">FAQ</a>
+						</li>
+						<li>
+							<a href="#pubs">publications</a>
+						</li>
+						<li>
+							<a href="#contact">contact</a>
+						</li>
+						<li>
+							<a href="#ack">acknowledgements</a>
+						</li>
+						<li>
+							<a href="#log">change log</a>
+						</li>
+					</ol>
+				</td>
+				<td valign="top" style="padding:10;">
+					<a name="intro"></a>
+					<div class="subtitle">Introduction</div>
+					<p>The VLO is the general facetted browser for all CMD records. CMD is a very flexible metadata format allowing for a wide variety of metadata structures. Thanks to semantic annotations the general services, like the VLO, can work on the semantic level to bypass the structural variety. This page shows the current mapping of structures via semantic annotations to the VLO facets and allows to check the results for a specific CMD profile.</p>
+					<fieldset style="border: 1px dashed red;margin-bottom:1em;">
+						<legend style="font-weight:bold;">Warning</legend>
+						<p> The mapping shown/used is taken from GitHub, which should be (manually) in sync with the VLO in production! </p>
+						<p> This page implements the same logic used in the vlo_importer in XSLT, but as it isn't the same codebase there is a potential for discrepancies. </p>
+					</fieldset>
+					<fieldset style="border: 1px dashed red;margin-bottom:1em;">
+						<legend style="font-weight:bold;">Preview</legend>
+						<p> This is not yet the final version of this page. The following actions still need to be done: </p>
+						<ul>
+							<li>also check the fallback pattern mapping</li>
+							<li>also handle attribute mapping</li>
+						</ul>
+					</fieldset>
+					<a name="mapping"></a>
+					<div class="subtitle">The facet mapping</div>
+					<p>
+						<b>TODO</b>
+					</p>
+					<a name="check"></a>
+					<div class="subtitle">Check profile</div>
+					<p>
+						<form action="$site$clarin/vlo/mapping/check" method="post" enctype="multipart/form-data" target="clarin-ws-cmd-core-validate">
+							<fieldset>
+								<legend>Check mapping in a CMD profile</legend>
+								<p>
+									<label for="profile">Profile:&#160;</label>
+									<input id="profile" name="prof" type="text" size="40" />
+								</p>
+								<p>
+									<input type="submit" value="Check" />
+								</p>
+							</fieldset>
+						</form>
+					</p>
+					<a name="faq"></a>
+					<div class="subtitle">Frequently Asked Questions</div>
+					<p>
+						<dl>
+							<dt><i>How can I ask a question?</i></dt>
+							<dd>
+								<p>Send an email to <a href="mailto:Menzo.Windhouwer@meertens.knaw.nl">Menzo Windhouwer</a> (CLARIN ERIC/Meertens Institute)</p>
+							</dd>
+						</dl>
+					</p>
+					<a name="pubs"></a>
+					<div class="subtitle">Publications</div>
+					<p>
+						<ol>
+							<li>...</li>
+						</ol>
+					</p>
+					<a name="contact"></a>
+					<div class="subtitle">Contact</div>
+					<p>For any additional information feel free to contact:</p>
+					<p>
+						<img src="$site$clarin/ws/cmd-core/imgs/email.png" align="baseline" />&#160;<a href="mailto:Menzo.Windhouwer@meertens.knaw.nl">Menzo Windhouwer</a> (CLARIN ERIC/Meertens Institute) </p>
+					<a name="ack"></a>
+					<div class="subtitle">Acknowledgements</div>
+					<p>...</p>
+					<a name="log"></a>
+					<div class="subtitle">Change log</div>
+					<p>[2017-08-17]</p>
+					<ol>
+						<li>updated info</li>
+						<li>prepared move from MPI to CLARIN ERIC</li>
+					</ol>
+					<p>[2014-01-20]</p>
+					<ol>
+						<li>now also renders the blacklist XPath expression</li>
+					</ol>
+					<p>[2013-11-06]</p>
+					<ol>
+						<li>a cron job now updates the mapping SVN checkout every hour</li>
+					</ol>
+					<p>[2013-10-10]</p>
+					<ol>
+						<li>fixed finding of the context</li>
+						<li>added profile link to the check result</li>
+					</ol>
+					<p>[2013-10-09] Initial page</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
