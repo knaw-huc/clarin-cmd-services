@@ -39,8 +39,6 @@ def check():
         executable.set_parameter("conf", config)
         node = proc.parse_xml(xml_text=profile)
         result = executable.transform_to_string(xdm_node=node)
-#        result = executable.apply_templates_returning_string(xdm_value=node)
-#        result = executable.apply_templates_returning_string(source_file="data/AnnotationTool.xml")
     return result
 
 @app.route("/")
