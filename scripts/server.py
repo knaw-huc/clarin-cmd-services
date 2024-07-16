@@ -35,9 +35,12 @@ def check():
         xsltproc = proc.new_xslt30_processor()
         xsltproc.set_cwd(os.getcwd())
         executable = xsltproc.compile_stylesheet(stylesheet_file="data/check.xsl")
-        config = proc.make_string_value(facet)
+        config = proc.parse_xml(xml_text=facet)
         executable.set_parameter("conf", config)
-        result = executable.apply_templates_returning_string(source_file=profile)
+        node = proc.parse_xml(xml_text=profile)
+        result = executable.transform_to_string(xdm_node=node)
+#        result = executable.apply_templates_returning_string(xdm_value=node)
+#        result = executable.apply_templates_returning_string(source_file="data/AnnotationTool.xml")
     return result
 
 @app.route("/")
