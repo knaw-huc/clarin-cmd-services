@@ -1,0 +1,5 @@
+Flask==2.3.2
+Flask-HTTPAuth==4.8.0
+Flask-pyoidc==3.10.0
+gunicorn==20.1.0
+saxonche==12.5.0
