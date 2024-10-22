@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM http://registry.gitlab.com/clarin-eric/docker-alpine-dog-uwsgi:1.0.2-a5
 
 ADD scripts ./
 
