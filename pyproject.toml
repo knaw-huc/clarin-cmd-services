@@ -11,5 +11,10 @@ dependencies = [
     "httpx>=0.28.1",
     "redis>=6.4.0",
     "uvicorn>=0.35.0",
+    "saxonche>=12.9.0",
 ]
 
+[tool.uv]
+environments = [
+    "sys_platform == 'linux' and platform_machine == 'aarch_64'"
+]
