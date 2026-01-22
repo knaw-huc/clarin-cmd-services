@@ -1,0 +1,11 @@
+services:
+  cmdi-server:
+    image: cmdi-server:latest
+    container_name: cmdi-server
+    restart: unless-stopped
+    volumes:
+      - "./app.py:/app/app.py"
+      - "./tmp:/app/tmp"
+      - "./templates:/app/templates"
+    ports:
+      - "8000:8000"

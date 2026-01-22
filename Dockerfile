@@ -1,13 +1,20 @@
-FROM http://registry.gitlab.com/clarin-eric/docker-alpine-dog-uwsgi:1.0.2-a5
+# Use the official Python image from the Docker Hub
+FROM ghcr.io/astral-sh/uv:python3.12-alpine
 
-ADD scripts ./
+# Set the working directory in the container
+WORKDIR /app
 
-RUN pip install -r requirements.txt
+# Copy the project files into the working directory
+COPY . /app
 
-RUN pip install --trusted-host pypi.python.org gunicorn
-ENV PYTHONPATH ./scripts
-ENV PYTHONUNBUFFERED 1
+# Enable bytecode compilation
+ENV UV_COMPILE_BYTECODE=1
 
-CMD ["gunicorn", "-b", ":5000", "-t", "60", "-w", "1", "server:app"]
+# Install the project's dependencies using the lockfile and settings
+RUN uv sync --frozen --no-dev
 
-EXPOSE 5000
+# Place executables in the environment at the front of the path
+ENV PATH="/app/.venv/bin:$PATH"
+
+EXPOSE 8000
+ENTRYPOINT ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
