@@ -1,6 +1,7 @@
 services:
   cmdi-server:
-    image: cmdi-server:latest
+    build:
+      context: .
     container_name: cmdi-server
     restart: unless-stopped
     volumes:

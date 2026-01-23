@@ -1,5 +1,6 @@
 # Use the official Python image from the Docker Hub
-FROM ghcr.io/astral-sh/uv:python3.12-alpine
+FROM python:3.12.3-bookworm
+RUN pip install uv
 
 # Set the working directory in the container
 WORKDIR /app
