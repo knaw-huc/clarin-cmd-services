@@ -25,9 +25,9 @@ def is_running():
     return PlainTextResponse("Cmdi Server running")
 
 
-@app.route("/clarin/cmd/mapping")
-def index():
-    return templates.TemplateResponse(name="index.html")
+@app.get("/clarin/cmd/mapping/", response_class=HTMLResponse)
+def index(request: Request):
+    return templates.TemplateResponse(request=request, name="index.html")
 
 
 @app.route("/clarin/cmd/mapping/check", methods=['GET'])

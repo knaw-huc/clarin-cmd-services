@@ -1,6 +1,9 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.12.3-bookworm
-RUN pip install uv
+
+COPY requirements.txt .
+#RUN pip install uv
+RUN pip install -r requirements.txt
 
 # Set the working directory in the container
 WORKDIR /app
