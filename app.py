@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
+app.mount("/styles", StaticFiles(directory="styles"), name="styles")
 
 
 @app.get("/")

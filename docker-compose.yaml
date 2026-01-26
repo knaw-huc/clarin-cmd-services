@@ -8,5 +8,6 @@ services:
       - "./app.py:/app/app.py"
       - "./tmp:/app/tmp"
       - "./templates:/app/templates"
+      - "./styles:/app/styles"
     ports:
       - "8000:8000"

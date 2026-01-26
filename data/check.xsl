@@ -8,20 +8,20 @@
             <head>
                 <title>
                     <xsl:text>VLO mapping for profile </xsl:text>
-                    <xsl:value-of select="/CMD_ComponentSpec/Header/Name"/>
+                    <xsl:value-of select="/ComponentSpec/Header/Name"/>
                     <xsl:text> (</xsl:text>
-                    <xsl:value-of select="/CMD_ComponentSpec/Header/ID"/>
+                    <xsl:value-of select="/ComponentSpec/Header/ID"/>
                     <xsl:text>)</xsl:text>
                 </title>
             </head>
             <body>
                 <h1>
-                    <a href="index.html">VLO mapping</a>
+                    <a href="/clarin/cmd/mapping">VLO mapping</a>
                     <xsl:text> for profile </xsl:text>
-                    <xsl:value-of select="/CMD_ComponentSpec/Header/Name"/>
+                    <xsl:value-of select="/ComponentSpec/Header/Name"/>
                     <xsl:text> (</xsl:text>
-                    <a href="$registry$/rest/registry/profiles/{/CMD_ComponentSpec/Header/ID}/xml">
-                        <xsl:value-of select="/CMD_ComponentSpec/Header/ID"/>
+                    <a href="$registry$/rest/registry/profiles/{ComponentSpec/Header/ID}/xml">
+                        <xsl:value-of select="/ComponentSpec/Header/ID"/>
                     </a>
                     <xsl:text>)</xsl:text>
                 </h1>
