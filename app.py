@@ -2,6 +2,8 @@ import uuid
 import hashlib
 import logging
 import httpx
+import os
+import urllib
 from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, Query, HTTPException, Request, Response
@@ -15,7 +17,6 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
-#app.mount("/static", StaticFiles(directory="tmp"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
@@ -30,20 +31,36 @@ def index(request: Request):
     return templates.TemplateResponse(request=request, name="index.html")
 
 
-@app.route("/clarin/cmd/mapping/check", methods=['GET'])
-def check(request: Request):
-    # dirty trick to avoid "urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] ... ":
-    context = ssl._create_unverified_context()
-    # profile
-    prof = request.args.get('prof', None)
+@app.get("/clarin/cmd/mapping/check", response_class=HTMLResponse)
+def check(prof: str = None):
+    logger.info(f"Check {prof}")
     p_url = f"https://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/1.x/profiles/{prof}/xml"
-    fp = urllib.request.urlopen(p_url,context=context)
-    prof_result = fp.read()
+    decoded_url = unquote(p_url)
+    logger.info(f"decoded_url {decoded_url}")
+    parsed_url = urlparse(decoded_url)
+    logger.info(f"parsed_url {parsed_url}")
+    try:
+        response = httpx.get(decoded_url, follow_redirects=Query(True))
+        if 199 < response.status_code < 300:
+            content = response.content
+            logger.debug(f"Origin Content: {content}")
+            content = parse_content(content)
+            logger.debug(f"Result Content: {content}")
+        else:
+            content = f"Error: Received status code {response.status_code} from {decoded_url}"
+            logger.error(content)
+        return HTMLResponse(content=content, status_code=200)
+    except httpx.RequestError as e:
+        raise HTTPException(status_code=502, detail=str(e))
+
+
+
+def parse_content(content):
+    prof_result = content
     profile = prof_result.decode("utf8")
-    fp.close()
     # facet
     f_url = "https://raw.githubusercontent.com/clarin-eric/VLO-mapping/master/mapping/facetConcepts.xml"
-    fp = urllib.request.urlopen(f_url,context=context)
+    fp = urllib.request.urlopen(f_url) #,context=context)
     facet_result = fp.read()
     facet = facet_result.decode("utf8")
     fp.close()
@@ -58,6 +75,7 @@ def check(request: Request):
         node = proc.parse_xml(xml_text=profile)
         result = executable.transform_to_string(xdm_node=node)
     return result
+
 
 
 
