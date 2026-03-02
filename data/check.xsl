@@ -20,7 +20,7 @@
                     <xsl:text> for profile </xsl:text>
                     <xsl:value-of select="/ComponentSpec/Header/Name"/>
                     <xsl:text> (</xsl:text>
-                    <a href="$registry$/rest/registry/profiles/{ComponentSpec/Header/ID}/xml">
+                    <a href="https://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/{ComponentSpec/Header/ID}/xml">
                         <xsl:value-of select="/ComponentSpec/Header/ID"/>
                     </a>
                     <xsl:text>)</xsl:text>
